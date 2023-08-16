@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-void translational(char *string, int index)
+void translational (char *string, int index)
 {
     for (int i = index; i < strlen(string); i++)
     {
@@ -10,7 +10,7 @@ void translational(char *string, int index)
     printf("%s\n", string);
 }
 
-void upper_string(char *string)
+void upper_string (char *string)
 {
     for (int i = 0; i < strlen(string); i++)
     {
@@ -21,7 +21,7 @@ void upper_string(char *string)
     }
 }
 
-void lower_string(char *string)
+void lower_string (char *string)
 {
     for (int i = 0; i < strlen(string); i++)
     {
@@ -32,7 +32,7 @@ void lower_string(char *string)
     }
 }
 
-void upper(char *c)
+void upper (char *c)
 {
     if (( *c >= 'A') && ( *c <= 'Z'))
         {
@@ -40,13 +40,57 @@ void upper(char *c)
         }   
 }
 
-void lower(char *c)
+void lower (char *c)
 {
     if (( *c >= 'A') && ( *c <= 'Z'))
         {
             *c = *c + ('a' - 'A');
         }   
 }
+// Nhập tên vào mảng 2 chiều
+void enter_name (char name[][50], int number)
+{
+    for (int i = 0; i < number; i++)
+    {
+        printf("Enter name %d : \n", i);
+        gets(name[i]);
+    }
+}
+
+// Hoán vị 2 hàng trong mảng 2 chiều
+void row_permutation (char name[][50], int row1, int row2)
+{
+    char temporary[50];
+    strcpy(temporary, name[row1]);
+    strcpy(name[row1], name[row2]);
+    strcpy(name[row2], temporary);
+}
+// Sắp xếp thứ tự a - z
+void sort_names (char name[][50], int number)
+{
+    for (int i = 0; i < number; i++)
+    {
+        for (int j = i + 1 ; j < number; j++)
+        {
+            if (strcmp(name[i], name[j]) > 0)
+            {
+                row_permutation(name, i, j);
+
+            }
+        }
+    } 
+}
+
+// Xuat kết quả
+void print_name (char name[][50], int number)
+{
+    for (int i = 0; i < number; i++)
+    {
+        printf("%s\n", name[i]);
+    }
+    
+}
+
 
 int main()
 {
@@ -141,9 +185,10 @@ int main()
 #endif
 
 //7. Viết chương trình nhập vào 5 tên và sắp xếp tên theo thứ tự a-z và hiển thị ra ngoài màn hình.
-#if 1 
-    char name[50];
-    gets(name);
-    printf("%s", name);
+#if 0
+    char names[5][50];
+    enter_name(names, 5);
+    sort_names(names, 5);
+    print_name(names, 5);
 #endif
 }
