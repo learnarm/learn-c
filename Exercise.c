@@ -90,7 +90,49 @@ void print_name (char name[][50], int number)
     }
     
 }
+// Nhap mang 2 chieu
+void enter_array2 (int array[][3], int row, int col)
+{
+    printf("Nhap mang 2 chieu\n");
+    for (int i = 0; i < row; i++)
+    {
+        for (int j = 0; j < col; j++)
+        {
+            printf("Array[%d][%d]:", i, j);
+            scanf("%d", &array[i][j]);
+        }
+    }    
+}
 
+typedef struct 
+{
+    int min_val;
+    int max_val;
+} min_max_2D;
+
+min_max_2D find_minmax_array2D (int array[][3], int row, int col)
+{
+    min_max_2D result;
+    result.min_val = array[0][0]; 
+    result.max_val = array[0][0];
+
+    for (int i = 0; i < row; i++)
+    {
+        for (int j = 0; j < col; j++)
+        {
+            if (array[i][j] < result.min_val)
+            {
+                result.min_val = array[i][j];
+            }
+            if (array[i][j] > result.max_val)
+            {
+                result.max_val = array[i][j];
+            }
+        }
+    }
+    
+    return result;
+}
 
 int main()
 {
@@ -189,6 +231,19 @@ int main()
     char names[5][50];
     enter_name(names, 5);
     sort_names(names, 5);
+    printf("----------------------\n");
     print_name(names, 5);
+#endif
+
+//1. Viết chương trình nhập mảng 2 chiều. Tìm phần tử min/max của mảng đó.
+
+#if 1
+    int mang[2][3];
+    enter_array2(mang, 2, 3);
+    min_max_2D result = find_minmax_array2D(mang, 2, 3);
+
+    printf("%d\n", mang[0][1]);
+    printf("Min value: %d\n", result.min_val);
+    printf("Max value: %d\n", result.max_val);
 #endif
 }
