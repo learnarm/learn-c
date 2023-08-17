@@ -1,6 +1,9 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include <math.h>
+#include <stdbool.h>
+
 void translational (char *string, int index)
 {
     for (int i = index; i < strlen(string); i++)
@@ -134,6 +137,49 @@ min_max_2D find_minmax_array2D (int array[][3], int row, int col)
     return result;
 }
 
+void prime_number_to_zero (int array[][3], int row, int col)
+{
+    for (int i = 0; i < row; i++)
+    {
+        for (int j = 0; j < col; j++)
+        {
+            if (array[i][j] >= 2)
+            {
+                int square = (int) sqrt(array[i][j]);
+                int temporary = array[i][j];
+                array[i][j] = 0;
+                for (int z = 2; z <= square; z++)
+                {
+                    if (temporary % z == 0)
+                    {
+                        array[i][j] = temporary;
+                    }
+                }       
+            }
+        }
+    }
+}
+
+void print_array_2D (int array[][3], int row, int col)
+{
+    for (int i = 0; i < row; i++)
+    {
+        printf("\n");
+        for (int j = 0; j < col; j++)
+        {   
+            printf("%5d", array[i][j]);
+        }
+    }  
+}
+
+void cut_row (char array[][40], int row, int col, int location)
+{
+    for (int i = location; i < row; i++)
+    {
+        strcpy(array[i-1], array[i]);
+    }
+    
+}
 int main()
 {
     
@@ -236,14 +282,42 @@ int main()
 #endif
 
 //1. Viết chương trình nhập mảng 2 chiều. Tìm phần tử min/max của mảng đó.
-
-#if 1
-    int mang[2][3];
+#if 0
+    int mang[][3];
     enter_array2(mang, 2, 3);
     min_max_2D result = find_minmax_array2D(mang, 2, 3);
 
     printf("%d\n", mang[0][1]);
     printf("Min value: %d\n", result.min_val);
     printf("Max value: %d\n", result.max_val);
+#endif
+
+//2. Sửa các số nguyên tố trong mảng 2 chiều thành số 0.
+#if 0
+    int mang[2][3];
+    enter_array2(mang, 2, 3);
+    prime_number_to_zero(mang, 2, 3);
+    print_array_2D(mang, 2, 3);
+#endif
+
+//3. Cho mảng 2 chiều, viết hàm cắt 1 hàng bất kỳ trong mảng 2 chiều.
+#if 1
+    char log[5][40] =
+    {
+        "Nguoi dan Viet Nam",
+        "Deviot.vn",
+        "Hoc hoc nua hoc mai",
+        "Chien tranh lanh",
+        "ABC"
+    };
+
+
+    cut_row(log, 5, 40, 4);
+    for (int i = 0; i < 4; i++)
+    {
+        printf("%s\n", log[i]);
+    }
+    
+
 #endif
 }

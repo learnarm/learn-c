@@ -33,7 +33,7 @@ void sort(int *array, int *number)
     }
 }
 
-int laSoNguyenTo1(int n)
+bool laSoNguyenTo1(int n)
 {
     if (n < 2)
     {
